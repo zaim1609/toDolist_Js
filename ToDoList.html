@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+     <style>
+
+    </style>
+<body>
+
+<div>
+    <h1>To Do</h1>
+    <h2>Mo ngapain lo hari ini </h2>
+</div>    
+   
+<div class="container">
+    <form action="#">
+        <input type="text" id="new_text">
+        <button onclick="add()">Add</button> 
+    </form>
+
+    <ul id="todo">
+
+    </ul>
+</div>
+
+<style>
+    .done {text-decoration: line-through;}
+</style>
+    
+</body>
+    <script>
+        const todo = document.getElementById('todo')
+
+        //fitur todo:
+        //1. menambahkan
+        //2. coret kalau sudah selesai
+        //3. menghapus
+
+        function add() {
+            //ambil nilai dari textnya
+            let newText = document.getElementById('new_text')
+            //tambahkan list baru ke dalam ul
+
+            //ini cara lamanya
+                // let li = document.createElement('li')
+                // let txt = document.createTextNode(newText.value)
+
+                // li.appendChild(txt)
+                // todo.appendChild(li)
+
+            //ini cara baru
+            let newTodo = "<li> <span onclick = 'toggle(this)'>" + newText.value + "</span>"+
+                            "<span onclick = 'removeItem(this)'>[x]</span>" + "</li>"
+
+            todo.insertAdjacentHTML('afterbegin', newTodo)
+
+            //kosongkan fieldnya
+            newText.value = ""
+
+        }
+        function toggle(el){
+            el.classList.toggle('done')
+
+        }
+        function removeItem(el){
+            el.parentElement.remove()
+        }
+
+    </script>
+</html>
